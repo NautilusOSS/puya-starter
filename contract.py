@@ -20,7 +20,7 @@ class Base(ARC4Contract):
         self.manager = Account()    # zero address
         self.owner = Account()      # zero address
         self.version = UInt64()     # 0
-        self.updatable = UInt64()   # 0
+        self.updatable = bool(1)    # 1 (Default unlocked)
         # Locals
         #   None
         # Box
@@ -46,8 +46,8 @@ class Base(ARC4Contract):
         self.manager = manager.native
         self.owner = owner.native
 
-    @arc4.abimethod()
-    def approve_update(self, approval: arc4.UInt64) -> None:
+    @arc4.abimethod
+    def approve_update(self, approval: arc4.Bool) -> None:
         assert Txn.sender == self.owner, "must be owner"
         self.updatable = approval.native
 
@@ -57,10 +57,9 @@ class Base(ARC4Contract):
         # WARNING: This app can be updated by the manager
         ##########################################
         assert Txn.sender == self.manager, "must be manager"
-        assert self.updatable == UInt64(1), "not approved"
+        assert self.updatable == True, "not approved"
         ##########################################
         self.version = self.version + UInt64(1)
-        self.updatable = UInt64(0)
 
     @arc4.baremethod(allow_actions=["DeleteApplication"])
     def on_delete(self) -> None:

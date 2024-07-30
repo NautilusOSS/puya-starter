@@ -11,7 +11,7 @@ RUN python3 -m pip install --user pipx==1.5.0 && \
     python3 -m pipx ensurepath && \
     /root/.local/bin/pipx install algokit==2.0.3
 
-CMD /root/.local/bin/algokit compile py /src/contract.py --out-dir /artifacts && \
+CMD /root/.local/bin/algokit compile --version 2.2.0 py /src/contract.py --out-dir /artifacts && \
     /root/.local/bin/algokit generate client /artifacts/Base.arc32.json --language typescript --output /artifacts/BaseClient.ts && \
     /root/.local/bin/algokit generate client /artifacts/Base.arc32.json --language python --output /artifacts/BaseClient.py && \
     jq '.contract' /artifacts/Base.arc32.json > /artifacts/Base.json

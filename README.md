@@ -7,6 +7,7 @@ Starter implementation of smart contract using Algorand Python.
 - algokit >= version 2.0.3
 - python >= 3.12.3
 - node >= v20.12.2
+- puyapy >= 2.2.0
 
 ## commands
 

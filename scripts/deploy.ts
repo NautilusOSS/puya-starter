@@ -64,7 +64,7 @@ do {
       resolveBy: "creatorAndName",
       findExistingUsing: indexerClient,
       creatorAddress: deployer.addr,
-      name: "6",
+      name: "1",
       sender: deployer,
     },
     algodClient
@@ -76,6 +76,8 @@ do {
     onSchemaBreak: "fail",
   });
 } while (0);
+
+process.exit(0);
 
 // update contract
 do {
