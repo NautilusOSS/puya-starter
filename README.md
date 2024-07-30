@@ -17,6 +17,12 @@ algokit generate client Base.arc32.json --language typescript --output BaseClien
 algokit generate client Base.arc32.json --language python --output BaseClient.py
 ```
 
+### build and run script
+```shell
+(docker run -v $(pwd):/src -v $(pwd)/artifacts:/artifacts algokit-builder; cp -v artifacts/BaseClient.ts ./scripts/; (cd scripts/ && npx tsc && node deploy.js))
+```
+
+
 ### build all using docker
 
 ```shell
